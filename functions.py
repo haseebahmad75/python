@@ -133,6 +133,48 @@ def print_name(fname,lname):
 person={"fname":"Haseeb","lname":"Ahmad"}
 print_name(**person)
 
+# inner functions can access outer variables
+def outer():
+    message="hello"
+    def inner(): # inner function is not directly accessible. inner only exists while the outer is running
+        print(message)
+    inner()
+outer()
+
+# nonlocal keyword
+def outer():
+    x=10
+    print(x)
+    def inner():
+        nonlocal x
+        x=20
+        print(x)
+    inner()
+    return x
+outer()
+
+# Keyword Arguments
+def student(name,marks,city):
+    print(name); print(marks); print(city)
+
+student(city="Lahore", name="Haseeb", marks=80)
+
+# Default Arguments
+def greet(name, greeting="Hello"):
+    print(greeting + "," + name+ "!")
+
+greet("Ali")
+greet("Ali", "Welcome")
+
+def employee(name, salary=30000, *skills, **details):
+    print(name)
+    print(salary)
+    print(skills)
+    for key,value in details.items():
+        print(key+","+value)
+
+employee("Haseeb",250000,"C++","Git","OOP","DSA", city="Lahore", dept="CS", experience="2 years")
+
 
 
 
